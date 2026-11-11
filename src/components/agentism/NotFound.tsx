@@ -7,7 +7,7 @@ export function NotFound() {
   return (
     <>
       <Nav />
-      <main className="page py-20">
+      <main id="inhalt" className="page py-20">
         <p className="lemma">
           <b>404</b>, <i>die</i>
         </p>

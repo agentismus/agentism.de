@@ -1,16 +1,17 @@
 import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { NotFound } from "@/components/agentism/NotFound";
+import { absoluteUrl } from "@/lib/site";
 
 import appCss from "../styles.css?url";
+// The text face for Latin script. Preloading it avoids a flash of the fallback font.
+import textFont from "@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-normal.woff2?url";
 
 // Runs before the first paint: applies a stored colour scheme so the page does not
 // flash, and marks the document as scripted (the vault's scroll track depends on it).
 const bootScript = `(function(){var d=document.documentElement;d.classList.add("js");try{var t=localStorage.getItem("agentism_theme");if(t==="day"||t==="night")d.dataset.theme=t}catch(e){}})()`;
 
-// Absolute address of the site, for example "https://agentism.de". Link previews need it;
-// without it the share image is left out.
-const siteUrl = (import.meta.env.VITE_SITE_URL || "").replace(/\/$/, "");
-const shareImage = siteUrl ? `${siteUrl}${import.meta.env.BASE_URL}og.jpg` : null;
+// Link previews need an absolute address; without one the share image is left out.
+const shareImage = absoluteUrl("/og.jpg");
 
 export const Route = createRootRoute({
   head: () => ({
@@ -38,6 +39,7 @@ export const Route = createRootRoute({
       { name: "theme-color", content: "#f8f5ee", media: "(prefers-color-scheme: light)" },
     ],
     links: [
+      { rel: "preload", href: textFont, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/svg+xml", href: `${import.meta.env.BASE_URL}favicon.svg` },
     ],
@@ -56,6 +58,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <a href="#inhalt" className="skip">
+          Zum Inhalt springen
+        </a>
         {children}
         <Scripts />
       </body>

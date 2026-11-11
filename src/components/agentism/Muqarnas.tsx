@@ -97,7 +97,9 @@ export function Muqarnas() {
       cancelAnimationFrame(frame);
       lastTime = performance.now();
       lastProgress = -1;
-      frame = requestAnimationFrame(loop);
+      // Draw once right away, so the figure never depends on the next animation frame.
+      draw(lastTime);
+      frame = visible && !still.matches ? requestAnimationFrame(loop) : 0;
     };
 
     const recolor = () => {
@@ -124,6 +126,7 @@ export function Muqarnas() {
 
     resize();
     restart();
+    // The canvas now shows the same plan, so the server-rendered one can go.
     if (planRef.current) planRef.current.style.display = "none";
 
     return () => {
@@ -162,9 +165,9 @@ export function Muqarnas() {
           />
         </div>
         <figcaption className="figcap">
-          <span className="smallcaps">Abb. 1</span> — Muqarnas. Ein Gewölbe aus einzelnen Zellen,
-          nach einer Regel aus seinem Grundriss errechnet: hier von Ihrem Browser. Beim Scrollen
-          hebt sich der Grundriss zum Gewölbe.
+          <span className="smallcaps">Abb.&nbsp;1</span> — Muqarnas. Ein Gewölbe aus einzelnen
+          Zellen, nach einer Regel aus seinem Grundriss errechnet: hier von Ihrem Browser. Beim
+          Scrollen hebt sich der Grundriss zum Gewölbe.
         </figcaption>
       </figure>
     </div>

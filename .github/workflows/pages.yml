@@ -18,21 +18,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
+      # Fails until Pages is switched on with "GitHub Actions" as its source
+      # (repository Settings, Pages, Build and deployment).
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - run: npm ci
       - run: npm run build
         env:
           # "/<repository>/" for a project page, "/" once a custom domain is set.
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
-          # Optional repository variable, e.g. https://agentism.de. Enables the share image.
-          VITE_SITE_URL: ${{ vars.SITE_URL }}
-      - uses: actions/upload-pages-artifact@v4
+          # The site's address, for the share image, canonical links and the sitemap.
+          # Set the repository variable SITE_URL to override it, e.g. https://agentism.de.
+          VITE_SITE_URL: ${{ vars.SITE_URL || steps.pages.outputs.origin }}
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist/client
 
@@ -44,4 +47,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

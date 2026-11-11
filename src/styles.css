@@ -373,8 +373,24 @@
     transition: color 0.15s;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link[data-current="true"] {
     color: var(--accent);
+  }
+
+  /* Skip link: hidden until it receives keyboard focus. */
+  .skip {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 60;
+    padding: 0.5em 0.9em;
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .skip:focus {
+    top: 0.6rem;
   }
 
   /* ---------- the dictionary entry ---------- */
@@ -488,6 +504,55 @@
     max-width: 34rem;
     margin-inline: auto;
     margin-top: 0.75rem;
+  }
+
+  /* ---------- the path of a term (Abb. 2) ---------- */
+
+  .weg {
+    display: grid;
+    row-gap: 1.4rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .weg > li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+
+  /* A small lozenge marks each station on the line. */
+  .weg > li::before {
+    content: "";
+    position: absolute;
+    left: -0.32rem;
+    top: 0.5em;
+    width: 0.6rem;
+    height: 0.6rem;
+    transform: rotate(45deg);
+    background: var(--ground);
+    border: 1px solid var(--accent);
+  }
+
+  .weg > li:last-child::before {
+    background: var(--rubric);
+    border-color: var(--rubric);
+  }
+
+  @media (min-width: 48rem) {
+    .weg {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      column-gap: 1.5rem;
+      border-left: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .weg > li {
+      padding: 1.2rem 0 0;
+    }
+
+    .weg > li::before {
+      left: 0;
+      top: -0.32rem;
+    }
   }
 
   /* ---------- lists of numbered items ---------- */

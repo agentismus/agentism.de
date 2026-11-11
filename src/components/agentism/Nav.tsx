@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 
 const links = [
@@ -42,8 +42,36 @@ function ThemeToggle() {
   );
 }
 
+/** The section that currently crosses the middle of the screen, if it is one of the nav targets. */
+function useCurrentSection() {
+  const [current, setCurrent] = useState<string | null>(null);
+
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.getElementById(l.hash))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setCurrent(entry.target.id);
+          else setCurrent((id) => (id === entry.target.id ? null : id));
+        }
+      },
+      // A thin band across the middle of the viewport.
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  return current;
+}
+
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const current = useCurrentSection();
 
   return (
     <header className="nav">
@@ -54,7 +82,14 @@ export function Nav() {
 
         <nav className="hidden lg:flex items-center gap-7" aria-label="Hauptnavigation">
           {links.map((l) => (
-            <Link key={l.hash} to="/" hash={l.hash} className="nav-link">
+            <Link
+              key={l.hash}
+              to="/"
+              hash={l.hash}
+              className="nav-link"
+              activeOptions={{ includeHash: true }}
+              data-current={current === l.hash}
+            >
               {l.label}
             </Link>
           ))}

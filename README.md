@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-# Agentism
+# agentism.de
 
-The website of Agentism, a Berlin AI consultancy. It is a static site: every page is rendered to HTML at build time.
+The website of Agentism, a Berlin AI consultancy. It is a static site: every page is rendered to HTML at build time, and there is no server or database behind it.
 
 ## Run it
 
@@ -16,22 +15,25 @@ npm run preview  # serve the build locally
 
 ## Deploy to GitHub Pages
 
-The workflow in `.github/workflows/pages.yml` builds and deploys on every push to `main`. To switch it on:
+The workflow in `.github/workflows/pages.yml` builds and deploys on every push to `main`.
 
-1. Push the repository to GitHub. On the free plan it has to be public.
-2. In the repository, open **Settings → Pages** and set **Source** to **GitHub Actions**.
-3. Optional: set a custom domain on the same page. The build picks up the right base path by itself.
-4. Optional: add a repository variable `SITE_URL` (for example `https://agentism.de`) under **Settings → Secrets and variables → Actions → Variables**. Link previews then get an image.
+1. In the repository on GitHub, open **Settings → Pages**. Under **Build and deployment**, set **Source** to **GitHub Actions**. With "Deploy from a branch", GitHub shows this README instead of the site.
+2. Push to `main`, or start the workflow by hand under **Actions → Deploy to GitHub Pages → Run workflow**.
 
-The build reads the Supabase address and publishable key from `.env`.
+### The address
 
-## What does not run on a static host
+- Without further setup the site is at `https://agentismus.github.io/agentism.de/`.
+- To serve it from `agentism.de`, enter the domain under **Settings → Pages → Custom domain** and point the domain's DNS at GitHub Pages. The build adapts by itself. Also add a repository variable `SITE_URL` with the value `https://agentism.de` (**Settings → Secrets and variables → Actions → Variables**), so that link previews and the sitemap use the new address.
+- Renaming the repository only changes the part after the slash. The only name that serves from the root of `agentismus.github.io` is `agentismus.github.io` itself.
 
-The chat assistant needs a server, because its API key must stay secret. It is left out of the static build and comes back with `VITE_ENABLE_CHAT=true` on a host that runs the server build.
+## Contact form
+
+The form does not send anything. It opens the visitor's mail program with a prepared draft to `hallo@agentism.de`. The address is set in `src/lib/site.ts`.
+
+## References
+
+Add entries to `src/content/projects.ts`. The section "Arbeiten" appears once the list is not empty.
 
 ## Design
 
 `docs/design-language.md` explains the design: the dictionary entry, the margin notes, the vault, the colours and typefaces, and the sources behind every historical reference.
-=======
-# agentism.de
->>>>>>> a749d9fc88c19531e7a7170756028c0a602029e7

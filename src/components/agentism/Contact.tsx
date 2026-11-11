@@ -1,25 +1,31 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
+import { EMAIL } from "@/lib/site";
 import { Row, Section } from "./Text";
 
+/**
+ * Contact by e-mail. The form only prepares a draft in the visitor's own mail
+ * program, so the site needs no server and stores nothing.
+ */
 export function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [consent, setConsent] = useState(false);
-  const [state, setState] = useState<"idle" | "busy" | "done" | "failed">("idle");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [copied, setCopied] = useState(false);
 
-  async function submit(e: React.FormEvent) {
+  function openDraft(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim() || !consent) return;
-    setState("busy");
+    const who = name.trim();
+    const subject = who ? `Erstgespräch – ${who}` : "Erstgespräch";
+    const body = who ? `${message.trim()}\n\n${who}` : message.trim();
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
+  async function copyAddress() {
     try {
-      const { error } = await supabase.from("contact_requests").insert(form);
-      if (error) throw error;
-      setState("done");
-      setForm({ name: "", email: "", message: "" });
-      setConsent(false);
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2500);
     } catch {
-      setState("failed");
+      // No clipboard access: the address stays visible and can be selected by hand.
     }
   }
 
@@ -34,39 +40,40 @@ export function Contact() {
       <Row
         className="mt-9"
         notes={
-          <p>
-            Oder direkt per E-Mail:
-            <br />
-            <a href="mailto:hallo@agentism.de" className="link text-[1.15em]">
-              hallo@agentism.de
-            </a>
-          </p>
+          <>
+            <p>
+              Direkt per E-Mail:
+              <br />
+              <a href={`mailto:${EMAIL}`} className="link text-[1.15em]">
+                {EMAIL}
+              </a>
+            </p>
+            <p className="mt-3">
+              <button type="button" onClick={copyAddress} className="nav-link underline">
+                {copied ? "Adresse kopiert" : "Adresse kopieren"}
+              </button>
+              <span className="sr-only" role="status">
+                {copied ? "Die E-Mail-Adresse wurde kopiert." : ""}
+              </span>
+            </p>
+          </>
         }
       >
-        <form onSubmit={submit} className="max-w-[34em]">
+        <p className="max-w-[38em]">
+          Für den Anfang genügen drei Angaben: was Ihr Betrieb tut, welche Aufgabe Sie beschäftigt
+          und welche Daten oder Systeme es dazu schon gibt.
+        </p>
+
+        <form onSubmit={openDraft} className="max-w-[34em] mt-6">
           <label className="block">
             <span className="sr-only">Name</span>
             <input
               className="field"
               placeholder="Name"
               autoComplete="name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               maxLength={120}
-            />
-          </label>
-          <label className="block mt-2">
-            <span className="sr-only">E-Mail</span>
-            <input
-              className="field"
-              type="email"
-              placeholder="E-Mail"
-              autoComplete="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-              maxLength={200}
             />
           </label>
           <label className="block mt-2">
@@ -74,51 +81,21 @@ export function Contact() {
             <textarea
               className="field resize-none"
               placeholder="Nachricht"
-              rows={4}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              rows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               required
-              maxLength={2000}
+              maxLength={4000}
             />
           </label>
 
-          <label className="flex items-start gap-3 mt-6 cursor-pointer text-[0.84em] leading-[1.5] text-ink-soft">
-            <input
-              type="checkbox"
-              checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
-              required
-              className="mt-[0.3em] h-4 w-4 shrink-0 accent-(--accent)"
-            />
-            <span>
-              Ich willige ein, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden.
-              Weitere Informationen in der{" "}
-              <Link to="/datenschutz" className="link">
-                Datenschutzerklärung
-              </Link>
-              . Die Einwilligung kann jederzeit widerrufen werden.
-            </span>
-          </label>
-
-          <button
-            type="submit"
-            disabled={state === "busy" || !consent}
-            className="btn btn-primary mt-7"
-          >
-            {state === "busy" ? "Wird gesendet …" : "Absenden"}
+          <button type="submit" className="btn btn-primary mt-7">
+            E-Mail-Entwurf öffnen
           </button>
 
-          <p className="mt-4" role="status">
-            {state === "done" && "Danke. Wir melden uns bald."}
-            {state === "failed" && (
-              <>
-                Das hat nicht geklappt. Bitte schreiben Sie uns direkt an{" "}
-                <a href="mailto:hallo@agentism.de" className="link">
-                  hallo@agentism.de
-                </a>
-                .
-              </>
-            )}
+          <p className="mt-4 text-[0.84em] leading-[1.5] text-ink-soft">
+            Die Schaltfläche öffnet Ihr E-Mail-Programm mit dem fertigen Entwurf. Diese Seite
+            speichert und überträgt Ihre Eingaben nicht.
           </p>
         </form>
       </Row>

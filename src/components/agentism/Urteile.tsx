@@ -30,11 +30,11 @@ export function Urteile() {
         notes={
           <>
             <Gloss term="Dreiteilung">
-              Sie ist geliehen. Muḥammad al-Sanūsī (gest. 1490 in Tlemcen) eröffnet sein Lehrbuch{" "}
-              <Tr>Umm al-Barāhīn</Tr> mit dem Satz, das Urteil der Vernunft kenne genau drei Fälle:
-              das Notwendige (<Ar>واجب</Ar> <Tr>wājib</Tr>), das Unmögliche (<Ar>مستحيل</Ar>{" "}
-              <Tr>mustaḥīl</Tr>) und das Mögliche (<Ar>جائز</Ar> <Tr>jāʾiz</Tr>). Er meinte
-              Größeres; die Einteilung trägt auch im Kleinen.
+              Sie ist geliehen. Muḥammad al-Sanūsī (gest.&nbsp;1490 in Tlemcen) eröffnet sein
+              Lehrbuch <Tr>Umm al-Barāhīn</Tr> mit dem Satz, das Urteil der Vernunft kenne genau
+              drei Fälle: das Notwendige (<Ar>واجب</Ar> <Tr>wājib</Tr>), das Unmögliche (
+              <Ar>مستحيل</Ar> <Tr>mustaḥīl</Tr>) und das Mögliche (<Ar>جائز</Ar> <Tr>jāʾiz</Tr>). Er
+              meinte Größeres; die Einteilung trägt auch im Kleinen.
             </Gloss>
             <Gloss term="Grund">
               Was sein kann oder nicht, braucht nach den Gelehrten des Kalām einen Grund, der den

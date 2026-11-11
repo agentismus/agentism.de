@@ -31,7 +31,7 @@ export function About() {
           <Gloss term="Begriff">
             Klare Sprache beginnt bei den Begriffen. Die islamische Gelehrsamkeit pflegte dafür eine
             eigene Gattung, die Bücher der Definitionen (<Tr>taʿrīfāt</Tr>); das bekannteste schrieb
-            al-Jurjānī (gest. 1413). Ihr Handwerk, das Bestimmen nach Gattung und Unterschied,
+            al-Jurjānī (gest.&nbsp;1413). Ihr Handwerk, das Bestimmen nach Gattung und Unterschied,
             stammt von Aristoteles. Daher das Wörterbuch auf dieser Seite.
           </Gloss>
         }

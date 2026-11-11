@@ -37,7 +37,7 @@ Each entry gives the content, where it is used on the site, and how to phrase it
 - **Content.** Aristotle (_De anima_ III.5) describes an intellect that "makes" all things intelligible. The commentators named it νοῦς ποιητικός. In Arabic philosophy it became العقل الفعّال _al-ʿaql al-faʿʿāl_ (al-Fārābī, d. 950; Ibn Sīnā, d. 1037; Ibn Rushd, d. 1198). With the translations from Arabic in the 12th and 13th centuries it reached the Latin schools as _intellectus agens_, the "agent intellect", and was taken up by Albertus Magnus in Cologne (d. 1280) and Thomas Aquinas. German: _tätiger Verstand_ or _wirkende Vernunft_.
 - **What it does.** It turns what is potentially known into what is actually known.
 - **Why it matters here.** The first thing in European languages to be called an "agent" intelligence got its doctrine through Arabic. The Latin _agens_ in _intellectus agens_ is the same word as in _Agent_.
-- **On the site.** Margin note in "Arbeitsweise" (keyword _tätig_). Sense 1 of the hero entry.
+- **On the site.** Margin note in "Arbeitsweise" (keyword _tätig_). Sense 1 of the hero entry. "Abb. 2" in the same section draws the journey as five stations: Athens (Aristotle), Baghdad (al-Fārābī), Toledo (the translators from Arabic), Cologne (Albertus Magnus), Berlin (today).
 - **Phrasing.** Say that the concept travelled through Arabic philosophy. Do not say that the everyday word "Agent" was borrowed from Arabic.
 
 ### 4.2 Potency and act
@@ -115,10 +115,10 @@ Each entry gives the content, where it is used on the site, and how to phrase it
 - **Content.** Kalām works are written against objections: فإن قيل … قلنا _fa-in qīla … qulnā_, "if it is said …, we say …". The rules of such debate were later set out as a discipline of its own (_ādāb al-baḥth wa-l-munāẓara_). Latin scholasticism has the same form (_videtur quod … respondeo_). Al-Rāzī was known for stating his opponents' objections at full strength. A well-known quip says he paid the objections in cash and the answers on credit.
 - **On the site.** The section "Einwände" replaces an FAQ. Each item reads "Man wendet ein: … / Wir antworten: …". Margin note with the form and the quip (keyword _Einwand_).
 
-### 4.14 The _zāʾirja_ (chat section only)
+### 4.14 The _zāʾirja_ (not on the site at present)
 
 - **Content.** Ibn Khaldūn (_Muqaddima_, 1377) describes the زايرجة _zāʾirja_: a technique that derives an answer from the letters of a question. Many took it for knowledge of the unseen. His verdict is that the answer agrees with the question because it is obtained from its wording, and nothing more. It has been suggested that Ramon Llull knew the device and modelled his _Ars magna_ on it; Leibniz's _Dissertatio de arte combinatoria_ (1666) builds on Llull.
-- **On the site.** Margin note in the chat section (keyword _Auskunft_), as an honest caveat about what the chat model's answers are.
+- **On the site.** Nowhere at present. It was written as the margin note for a chat section (keyword _Auskunft_), as an honest caveat about what a chat model's answers are. The chat was removed when the site became static. Use it again if a chat returns.
 - **Caution.** The device itself was divination. It appears only through Ibn Khaldūn's criticism of it.
 
 ### 4.15 Muqarnas
@@ -136,7 +136,7 @@ Each entry gives the content, where it is used on the site, and how to phrase it
 ### 4.17 Colophon
 
 - **Content.** Manuscripts end with a colophon that names how and when the book was made. "Kolophon" is Greek κολοφών, "summit, finishing touch".
-- **On the site.** A short closing section explains the form of the page, the vault, the typefaces and the colours, quotes Goethe, and dates the page in both calendars.
+- **On the site.** A short closing section explains the form of the page, the vault, the typefaces and the colours, links to the site's public source code, quotes Goethe, and dates the page in both calendars.
 
 ### 4.18 Bridges a German reader already has
 
@@ -199,17 +199,16 @@ Each entry gives the content, where it is used on the site, and how to phrase it
 
 ## 7. Section map
 
-| Section                             | Lemma line     | Ties used                                                                                        |
-| ----------------------------------- | -------------- | ------------------------------------------------------------------------------------------------ |
-| Hero                                | Agent·ism      | the word (3), agent intellect (4.1), wakāla (4.7), muqarnas figure (4.15)                        |
-| Drei Urteile                        | Urteil, das    | three judgements (4.4), deciding reason (4.6)                                                    |
-| Leistungen                          | Leistung, die  | potency and act (4.2), isnād (4.8), al-Rāzī's formula (4.3), ḥiyal (4.9), chess automaton (4.10) |
-| Arbeitsweise                        | Verfahren, das | agent intellect (4.1)                                                                            |
-| Einwände                            | Einwand, der   | disputation (4.13), judgement from habit (4.5), wakāla (4.7)                                     |
-| Auskunft (chat, server builds only) | Auskunft, die  | zāʾirja (4.14)                                                                                   |
-| Über uns                            | Werkstatt, die | definitions (4.11)                                                                               |
-| Kontakt                             | Gespräch, das  | none                                                                                             |
-| Kolophon                            | Kolophon, der  | text and gloss (4.12), muqarnas (4.15), type and colour (5), Goethe (4.18)                       |
+| Section      | Lemma line     | Ties used                                                                                        |
+| ------------ | -------------- | ------------------------------------------------------------------------------------------------ |
+| Hero         | Agent·ism      | the word (3), agent intellect (4.1), wakāla (4.7), muqarnas figure (4.15)                        |
+| Drei Urteile | Urteil, das    | three judgements (4.4), deciding reason (4.6)                                                    |
+| Leistungen   | Leistung, die  | potency and act (4.2), isnād (4.8), al-Rāzī's formula (4.3), ḥiyal (4.9), chess automaton (4.10) |
+| Arbeitsweise | Verfahren, das | agent intellect (4.1), shown as Abb. 2                                                           |
+| Einwände     | Einwand, der   | disputation (4.13), judgement from habit (4.5), wakāla (4.7)                                     |
+| Über uns     | Werkstatt, die | definitions (4.11)                                                                               |
+| Kontakt      | Gespräch, das  | none; contact is by e-mail only                                                                  |
+| Kolophon     | Kolophon, der  | text and gloss (4.12), muqarnas (4.15), type and colour (5), Goethe (4.18)                       |
 
 ## 8. Left out on purpose
 
@@ -256,16 +255,16 @@ Built on 2026-11-11. File paths are relative to the repository root.
 
 ### 11.1 Where things live
 
-| Thing                                                                          | File                                                                                                                                 |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Colour tokens for night and day, type scale, layout classes                    | `src/styles.css`                                                                                                                     |
-| Page-form building blocks: `Section`, `Row`, `Gloss`, `Ar`, `Gr`, `Tr`, `Star` | `src/components/agentism/Text.tsx`                                                                                                   |
-| The dictionary entry                                                           | `src/components/agentism/Hero.tsx`                                                                                                   |
-| The vault: geometry, drawing, scroll behaviour                                 | `src/components/agentism/muqarnas/geometry.ts`, `muqarnas/render.ts`, `Muqarnas.tsx`                                                 |
-| Sections and their margin notes                                                | `Urteile.tsx`, `Services.tsx`, `Prozess.tsx`, `Einwaende.tsx`, `About.tsx`, `Chat.tsx`, `Kolophon.tsx` in `src/components/agentism/` |
-| Order of sections on the page                                                  | `src/routes/index.tsx`                                                                                                               |
-| Colour-scheme toggle                                                           | `src/components/agentism/Nav.tsx` and the boot script in `src/routes/__root.tsx`                                                     |
-| Favicon (the star) and share image                                             | `public/favicon.svg`, `public/og.jpg`                                                                                                |
+| Thing                                                                          | File                                                                                                                     |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| Colour tokens for night and day, type scale, layout classes                    | `src/styles.css`                                                                                                         |
+| Page-form building blocks: `Section`, `Row`, `Gloss`, `Ar`, `Gr`, `Tr`, `Star` | `src/components/agentism/Text.tsx`                                                                                       |
+| The dictionary entry                                                           | `src/components/agentism/Hero.tsx`                                                                                       |
+| The vault: geometry, drawing, scroll behaviour                                 | `src/components/agentism/muqarnas/geometry.ts`, `muqarnas/render.ts`, `Muqarnas.tsx`                                     |
+| Sections and their margin notes                                                | `Urteile.tsx`, `Services.tsx`, `Prozess.tsx`, `Einwaende.tsx`, `About.tsx`, `Kolophon.tsx` in `src/components/agentism/` |
+| Order of sections on the page                                                  | `src/routes/index.tsx`                                                                                                   |
+| Colour-scheme toggle                                                           | `src/components/agentism/Nav.tsx` and the boot script in `src/routes/__root.tsx`                                         |
+| Favicon (the star) and share image                                             | `public/favicon.svg`, `public/og.jpg`                                                                                    |
 
 ### 11.2 Colour values
 
@@ -298,7 +297,13 @@ Night is the default. Day applies when the system prefers a light scheme or the 
 - EB Garamond as shipped by Fontsource has no small-caps and no old-style-figures feature. Labels use capitals at a smaller size instead.
 - It has no ⟨ ⟩ and no arrows. Use ‹ › for etymology brackets and do not use arrows in text.
 
-### 11.6 Not built
+### 11.6 What the site deliberately does not have
 
-- A server deployment. The chat section exists in the code but is switched off in the static build (see `src/lib/features.ts`).
+- No server, no database and no chat. The site is static files only. Contact is by e-mail: the form on the page prepares a draft in the visitor's own mail program and stores nothing.
+- No references section yet. It appears once entries are added to `src/content/projects.ts`.
 - The ideas in section 9.
+
+### 11.7 Other figures and details
+
+- "Abb. 2", the path of the term, is `src/components/agentism/Weg.tsx`.
+- The site's e-mail address, repository address and absolute links come from `src/lib/site.ts`.

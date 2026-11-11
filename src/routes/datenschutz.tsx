@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/agentism/Nav";
 import { Footer } from "@/components/agentism/Footer";
-import { chatEnabled } from "@/lib/features";
+import { EMAIL, pageAddress } from "@/lib/site";
 
 export const Route = createFileRoute("/datenschutz")({
   head: () => ({
@@ -11,29 +11,28 @@ export const Route = createFileRoute("/datenschutz")({
       {
         name: "description",
         content:
-          "Wie Agentism personenbezogene Daten verarbeitet: Kontaktformular, Hosting und Ihre Rechte nach DSGVO.",
+          "Wie Agentism personenbezogene Daten verarbeitet: Hosting, Kontakt per E-Mail und Ihre Rechte nach DSGVO.",
       },
       { property: "og:title", content: "Datenschutzerklärung — Agentism" },
       {
         property: "og:description",
         content: "Informationen zur Datenverarbeitung bei Agentism nach DSGVO.",
       },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/datenschutz" },
-      { name: "twitter:card", content: "summary" },
+      ...pageAddress("/datenschutz").meta,
     ],
-    links: [{ rel: "canonical", href: "/datenschutz" }],
+    links: pageAddress("/datenschutz").links,
   }),
   component: Datenschutz,
 });
 
 const mail = (
-  <a href="mailto:hallo@agentism.de" className="link">
-    hallo@agentism.de
+  <a href={`mailto:${EMAIL}`} className="link">
+    {EMAIL}
   </a>
 );
 
-// The chat exists only in server builds, so its paragraphs appear only there.
+// Keep this page in step with what the site really does. It has no database,
+// no forms that send data, no cookies and no third-party scripts or fonts.
 const sections: { title: string; body: ReactNode }[] = [
   {
     title: "Verantwortlicher",
@@ -48,51 +47,39 @@ const sections: { title: string; body: ReactNode }[] = [
   {
     title: "Hosting und Server-Logfiles",
     body: (
-      <p>
-        Beim Aufruf dieser Website werden technisch notwendige Daten verarbeitet (IP-Adresse, Datum
-        und Uhrzeit, aufgerufene Seite, Browsertyp). Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
-        — unser berechtigtes Interesse am sicheren und stabilen Betrieb der Website. Diese Daten
-        werden nicht mit anderen Datenquellen zusammengeführt.
-      </p>
+      <>
+        <p>
+          Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc., 88 Colin P.
+          Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Website verarbeitet GitHub
+          technisch notwendige Daten, insbesondere die IP-Adresse, Datum und Uhrzeit, die
+          aufgerufene Seite und den Browsertyp. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1
+          lit.&nbsp;f DSGVO: unser berechtigtes Interesse am sicheren und stabilen Betrieb der
+          Website.
+        </p>
+        <p>
+          Dabei können Daten in die USA übermittelt werden. GitHub, Inc. ist nach dem EU-US Data
+          Privacy Framework zertifiziert. Wir selbst werten diese Daten nicht aus und führen sie
+          nicht mit anderen Daten zusammen.
+        </p>
+      </>
     ),
   },
   {
-    title: "Kontaktformular",
+    title: "Kontakt per E-Mail",
     body: (
-      <p>
-        Wenn Sie uns über das Kontaktformular schreiben, verarbeiten wir Name, E-Mail-Adresse und
-        Ihre Nachricht, um die Anfrage zu beantworten. Rechtsgrundlage ist Ihre Einwilligung (Art. 6
-        Abs. 1 lit. a DSGVO) sowie Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Anfragen. Die
-        Daten werden gelöscht, sobald die Anfrage abschließend bearbeitet ist und keine gesetzlichen
-        Aufbewahrungsfristen entgegenstehen.
-      </p>
-    ),
-  },
-  ...(chatEnabled
-    ? [
-        {
-          title: "KI-Assistent (Chat)",
-          body: (
-            <p>
-              Die Eingaben im Chat werden zur Beantwortung an unseren KI-Dienstleister Mistral AI
-              (Mistral AI SAS, Paris, Frankreich) übermittelt und in unserer Datenbank
-              protokolliert, um den Dienst bereitzustellen und zu verbessern. Rechtsgrundlage ist
-              Art. 6 Abs. 1 lit. f DSGVO. Bitte geben Sie im Chat keine sensiblen personenbezogenen
-              Daten ein.
-            </p>
-          ),
-        },
-      ]
-    : []),
-  {
-    title: "Auftragsverarbeiter",
-    body: (
-      <p>
-        Für Datenbank, Hosting und Formularspeicherung setzen wir Dienstleister ein, mit denen
-        Verträge zur Auftragsverarbeitung nach Art. 28 DSGVO bestehen. Eine Übermittlung in
-        Drittländer erfolgt nur auf Grundlage geeigneter Garantien (z. B.
-        EU-Standardvertragsklauseln).
-      </p>
+      <>
+        <p>
+          Wenn Sie uns eine E-Mail schreiben, verarbeiten wir Ihre Angaben, um die Anfrage zu
+          beantworten. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO bei
+          vorvertraglichen Anfragen, sonst Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO. Die Daten
+          werden gelöscht, sobald die Anfrage abschließend bearbeitet ist und keine gesetzlichen
+          Aufbewahrungsfristen entgegenstehen.
+        </p>
+        <p>
+          Das Formular auf der Startseite erstellt lediglich einen Entwurf in Ihrem eigenen
+          E-Mail-Programm. Die Website selbst speichert und überträgt Ihre Eingaben nicht.
+        </p>
+      </>
     ),
   },
   {
@@ -100,12 +87,9 @@ const sections: { title: string; body: ReactNode }[] = [
     body: (
       <>
         <p>
-          Diese Website setzt keine Analyse- oder Marketing-Cookies ein. Wenn Sie zwischen Tag- und
-          Nachtansicht wechseln, wird Ihre Wahl lokal im Browser gespeichert (localStorage).
-          {chatEnabled
-            ? " Für die Funktion des KI-Assistenten wird außerdem eine zufällige Sitzungskennung lokal gespeichert."
-            : ""}{" "}
-          Diese Einträge enthalten keine personenbezogenen Daten und können jederzeit über die
+          Diese Website setzt keine Cookies und kein Tracking ein. Wenn Sie zwischen Tag- und
+          Nachtansicht wechseln, wird Ihre Wahl lokal im Browser gespeichert (localStorage). Der
+          Eintrag enthält keine personenbezogenen Daten und kann jederzeit über die
           Browsereinstellungen gelöscht werden.
         </p>
         <p>
@@ -119,11 +103,11 @@ const sections: { title: string; body: ReactNode }[] = [
     title: "Ihre Rechte",
     body: (
       <p>
-        Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17),
-        Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch
-        (Art. 21 DSGVO). Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft
-        widerrufen. Zudem steht Ihnen ein Beschwerderecht bei einer Aufsichtsbehörde zu, etwa der
-        Berliner Beauftragten für Datenschutz und Informationsfreiheit.
+        Sie haben das Recht auf Auskunft (Art.&nbsp;15), Berichtigung (Art.&nbsp;16), Löschung
+        (Art.&nbsp;17), Einschränkung der Verarbeitung (Art.&nbsp;18), Datenübertragbarkeit
+        (Art.&nbsp;20) und Widerspruch (Art.&nbsp;21 DSGVO). Zudem steht Ihnen ein Beschwerderecht
+        bei einer Aufsichtsbehörde zu, etwa der Berliner Beauftragten für Datenschutz und
+        Informationsfreiheit.
       </p>
     ),
   },
@@ -139,7 +123,7 @@ function Datenschutz() {
   return (
     <>
       <Nav />
-      <main className="page legal max-w-[48rem] pt-14 pb-8">
+      <main id="inhalt" className="page legal max-w-[48rem] pt-14 pb-8">
         <p className="lemma">
           <b>Datenschutz</b>, <i>der</i>
         </p>

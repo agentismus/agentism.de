@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/agentism/Nav";
 import { Footer } from "@/components/agentism/Footer";
+import { EMAIL, pageAddress } from "@/lib/site";
 
 export const Route = createFileRoute("/impressum")({
   head: () => ({
@@ -12,11 +13,9 @@ export const Route = createFileRoute("/impressum")({
       },
       { property: "og:title", content: "Impressum — Agentism" },
       { property: "og:description", content: "Anbieterkennzeichnung nach § 5 DDG." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/impressum" },
-      { name: "twitter:card", content: "summary" },
+      ...pageAddress("/impressum").meta,
     ],
-    links: [{ rel: "canonical", href: "/impressum" }],
+    links: pageAddress("/impressum").links,
   }),
   component: Impressum,
 });
@@ -25,7 +24,7 @@ function Impressum() {
   return (
     <>
       <Nav />
-      <main className="page legal max-w-[48rem] pt-14 pb-8">
+      <main id="inhalt" className="page legal max-w-[48rem] pt-14 pb-8">
         <p className="lemma">
           <b>Impressum</b>, <i>das</i>
         </p>
@@ -49,8 +48,8 @@ function Impressum() {
             <h2>Kontakt</h2>
             <p>
               E-Mail:{" "}
-              <a href="mailto:hallo@agentism.de" className="link">
-                hallo@agentism.de
+              <a href={`mailto:${EMAIL}`} className="link">
+                {EMAIL}
               </a>
               <br />
               Telefon: [Telefonnummer]

@@ -1,3 +1,4 @@
+import { REPOSITORY } from "@/lib/site";
 import { Row, Section, Tr } from "./Text";
 
 /** The colophon: like the closing note of a manuscript, it says how the page was made. */
@@ -68,8 +69,18 @@ export function Kolophon() {
               von <Tr>qirmiz</Tr>.
             </dd>
           </div>
+          <div>
+            <dt className="smallcaps text-rubric">Quelltext</dt>
+            <dd>
+              Der Quelltext dieser Seite ist offen:{" "}
+              <a href={REPOSITORY} target="_blank" rel="noreferrer" className="link">
+                {REPOSITORY.replace("https://", "")}
+              </a>
+              . Wer andere prüft, sollte sich selbst prüfen lassen.
+            </dd>
+          </div>
         </dl>
-        <p className="mt-8 text-ink-soft">Berlin, 2026 · 1448 n. H.</p>
+        <p className="mt-8 text-ink-soft">Berlin, 2026 · 1448&nbsp;n.&nbsp;H.</p>
       </Row>
     </Section>
   );

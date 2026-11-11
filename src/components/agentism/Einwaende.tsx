@@ -29,9 +29,9 @@ const objections: Objection[] = [
     notes: (
       <Gloss term="Vollmacht">
         Ein Agent handelt im Auftrag. Das islamische Recht kennt dafür die <Ar>وكالة</Ar>{" "}
-        <Tr>wakāla</Tr>, das BGB die Stellvertretung (§§ 164 ff.). Beide kommen zum selben Schluss:
-        Der Vertreter ist an seine Vollmacht gebunden. Was darüber hinausgeht, bleibt schwebend
-        unwirksam, bis der Vertretene es genehmigt (§ 177 BGB).
+        <Tr>wakāla</Tr>, das BGB die Stellvertretung (§§&nbsp;164&nbsp;ff.). Beide kommen zum selben
+        Schluss: Der Vertreter ist an seine Vollmacht gebunden. Was darüber hinausgeht, bleibt
+        schwebend unwirksam, bis der Vertretene es genehmigt (§&nbsp;177&nbsp;BGB).
       </Gloss>
     ),
   },

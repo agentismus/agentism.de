@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
+import { EMAIL } from "@/lib/site";
 
 const social = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/agentism" },
-  { label: "GitHub", href: "https://github.com/agentism" },
-  { label: "E-Mail", href: "mailto:hallo@agentism.de" },
+  { label: "GitHub", href: "https://github.com/agentismus" },
+  { label: "E-Mail", href: `mailto:${EMAIL}` },
 ];
 
 export function Footer() {

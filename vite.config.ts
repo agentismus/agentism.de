@@ -7,6 +7,9 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 // https://<user>.github.io/<repo>/ on GitHub Pages. With a custom domain it stays "/".
 const base = process.env.BASE_PATH ?? "/";
 
+// The site's absolute address, when known. A sitemap is written only then.
+const siteUrl = (process.env.VITE_SITE_URL ?? "").replace(/\/$/, "");
+
 export default defineConfig({
   base,
   resolve: { tsconfigPaths: true },
@@ -27,8 +30,9 @@ export default defineConfig({
         { path: "/impressum" },
         { path: "/datenschutz" },
         // Static hosts serve this file for unknown addresses.
-        { path: "/404", prerender: { outputPath: "/404.html" } },
+        { path: "/404", prerender: { outputPath: "/404.html" }, sitemap: { exclude: true } },
       ],
+      sitemap: siteUrl ? { enabled: true, host: siteUrl + base.replace(/\/$/, "") } : undefined,
     }),
     viteReact(),
   ],

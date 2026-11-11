@@ -53,14 +53,14 @@ const groups: Group[] = [
       <>
         <Gloss term="Quelle">
           Die Gelehrten der Überlieferung verlangten für jede Aussage die Kette ihrer Gewährsleute (
-          <Ar>إسناد</Ar> <Tr>isnād</Tr>). Ibn al-Mubārak (gest. 797) nannte den Grund: Ohne sie
+          <Ar>إسناد</Ar> <Tr>isnād</Tr>). Ibn al-Mubārak (gest.&nbsp;797) nannte den Grund: Ohne sie
           könnte jeder sagen, was er will. Für Sprachmodelle gilt dasselbe.
         </Gloss>
         <Gloss term="Wahl">
-          Fakhr al-Dīn al-Rāzī (gest. 1210) nannte den Menschen einen Gezwungenen in der Gestalt
-          eines Wählenden (<Tr>muḍṭarr fī ṣūrat mukhtār</Tr>). Über den Menschen wird bis heute
-          gestritten. Auf einen Software-Agenten trifft der Satz wörtlich zu, und deshalb bleibt die
-          Verantwortung beim Menschen.
+          Fakhr al-Dīn al-Rāzī (gest.&nbsp;1210) nannte den Menschen einen Gezwungenen in der
+          Gestalt eines Wählenden (<Tr>muḍṭarr fī ṣūrat mukhtār</Tr>). Über den Menschen wird bis
+          heute gestritten. Auf einen Software-Agenten trifft der Satz wörtlich zu, und deshalb
+          bleibt die Verantwortung beim Menschen.
         </Gloss>
         <Gloss term="Automat">
           ‹gr. <Gr>αὐτόματον</Gr> „sich selbst bewegend“› Um 850 beschrieben die Brüder Banū Mūsā in

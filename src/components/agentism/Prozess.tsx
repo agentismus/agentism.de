@@ -1,9 +1,10 @@
-import { Ar, Gloss, Gr, Row, Section, Tr } from "./Text";
+import { Gloss, Row, Section, Tr } from "./Text";
+import { Weg } from "./Weg";
 
 const steps = [
   {
     title: "Erstgespräch",
-    text: "30 Minuten, kostenfrei. Wir hören zu, verstehen Ihren Betrieb und sagen ehrlich, ob KI hier etwas bringt.",
+    text: "30\u00a0Minuten, kostenfrei. Wir hören zu, verstehen Ihren Betrieb und sagen ehrlich, ob KI hier etwas bringt.",
   },
   {
     title: "Analyse",
@@ -36,12 +37,11 @@ export function Prozess() {
         className="mt-9"
         notes={
           <Gloss term="tätig">
-            Aristoteles nannte „tätig“ den Verstand, der Mögliches wirklich macht (
-            <Gr>νοῦς ποιητικός</Gr>). In der arabischen Philosophie wurde daraus{" "}
-            <Ar>العقل الفعّال</Ar> <Tr>al-ʿaql al-faʿʿāl</Tr>, bei al-Fārābī und Ibn Sīnā
-            (Avicenna). Mit den Übersetzungen aus dem Arabischen gelangte die Lehre als{" "}
-            <Tr lang="la">intellectus agens</Tr> an die lateinischen Schulen, bis zu Albertus Magnus
-            in Köln. Im tätigen Verstand steckt dasselbe <Tr lang="la">agens</Tr> wie im Agenten.
+            Aristoteles nannte „tätig“ den Verstand, der Mögliches wirklich macht. Die arabischen
+            Philosophen bauten den Gedanken aus, und über ihre Schriften kam er an die lateinischen
+            Schulen (Abb.&nbsp;2). Im tätigen Verstand, lateinisch{" "}
+            <Tr lang="la">intellectus agens</Tr>, steckt dasselbe <Tr lang="la">agens</Tr> wie im
+            Agenten.
           </Gloss>
         }
       >
@@ -56,6 +56,7 @@ export function Prozess() {
           ))}
         </ol>
       </Row>
+      <Weg />
     </Section>
   );
 }
