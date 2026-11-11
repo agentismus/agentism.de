@@ -1,0 +1,569 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+/* Typefaces are bundled from npm and served by the site itself (no third-party font host). */
+@import "@fontsource-variable/eb-garamond/wght.css";
+@import "@fontsource-variable/eb-garamond/wght-italic.css";
+@import "@fontsource/amiri/arabic-400.css";
+
+/*
+ * Design tokens. See docs/design-language.md for what each role means.
+ *
+ * Night (lapis and gold) is the default. Day (Sidi Bou Said) applies when the
+ * system prefers a light scheme or the visitor picks it with the toggle.
+ * The day values appear twice below because one block follows the system
+ * setting and the other follows the toggle; keep the two in sync.
+ */
+:root {
+  color-scheme: dark;
+  --ground: #0a0f21;
+  --ground-2: #121b3a;
+  --ink: #ece7da;
+  --ink-soft: #b5b1a6;
+  --line: rgba(236, 231, 218, 0.16);
+  --accent: #cdab52;
+  --on-accent: #0a0f21;
+  --second: #3d5aa9;
+  --rubric: #e37362;
+  --glow: rgba(61, 90, 169, 0.24);
+  --vault-tone: #263c82;
+
+  --font-serif:
+    "EB Garamond Variable", "Amiri", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
+    serif;
+  --nav-h: 3.75rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="night"]) {
+    color-scheme: light;
+    --ground: #f8f5ee;
+    --ground-2: #e6ecf5;
+    --ink: #13254d;
+    --ink-soft: #4b5979;
+    --line: rgba(19, 37, 77, 0.2);
+    --accent: #1c57a8;
+    --on-accent: #ffffff;
+    --second: #b08226;
+    --rubric: #a52f27;
+    --glow: rgba(28, 87, 168, 0.08);
+    --vault-tone: #bccbe6;
+  }
+}
+
+:root[data-theme="day"] {
+  color-scheme: light;
+  --ground: #f8f5ee;
+  --ground-2: #e6ecf5;
+  --ink: #13254d;
+  --ink-soft: #4b5979;
+  --line: rgba(19, 37, 77, 0.2);
+  --accent: #1c57a8;
+  --on-accent: #ffffff;
+  --second: #b08226;
+  --rubric: #a52f27;
+  --glow: rgba(28, 87, 168, 0.08);
+  --vault-tone: #bccbe6;
+}
+
+@theme inline {
+  --color-ground: var(--ground);
+  --color-ground-2: var(--ground-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-second: var(--second);
+  --color-rubric: var(--rubric);
+  --font-serif: var(--font-serif);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--ground);
+    background-image: radial-gradient(ellipse 85% 55% at 82% 0%, var(--glow), transparent 72%);
+    background-repeat: no-repeat;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.125rem, 1.02rem + 0.42vw, 1.3125rem);
+    line-height: 1.55;
+    font-weight: 400;
+    font-feature-settings: "kern", "liga", "onum";
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  /* ---------- page frame ---------- */
+
+  .page {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+  }
+
+  /* Main text (matn) with its notes (hashiya) in the margin. */
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.25rem;
+  }
+
+  @media (min-width: 64rem) {
+    .row {
+      grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+      column-gap: clamp(3rem, 6vw, 6rem);
+    }
+  }
+
+  .margin {
+    font-size: 0.84em;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    border-left: 1px solid var(--line);
+    padding-left: 1rem;
+    align-self: start;
+  }
+
+  @media (min-width: 64rem) {
+    .margin {
+      border-left: 0;
+      padding-left: 0;
+      padding-top: 0.2em;
+    }
+  }
+
+  /* The margin column is narrow, so long German words may break there, but only long ones. */
+  .margin p {
+    hyphens: auto;
+    hyphenate-limit-chars: 10 4 4;
+  }
+
+  .gloss + .gloss {
+    margin-top: 1.05em;
+  }
+
+  .gloss-term {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--rubric);
+    margin-right: 0.45em;
+  }
+
+  /* ---------- sections ---------- */
+
+  .section {
+    padding-block: clamp(3rem, 7vw, 5.5rem) 0;
+  }
+
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--accent);
+    margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+  }
+
+  .rule::before,
+  .rule::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--line);
+  }
+
+  .lemma {
+    color: var(--ink-soft);
+    font-size: 0.95em;
+  }
+
+  .lemma b {
+    color: var(--rubric);
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 1.35rem + 2.5vw, 3.15rem);
+    line-height: 1.08;
+    letter-spacing: -0.012em;
+    margin-top: 0.3em;
+  }
+
+  .lead {
+    font-size: 1.08em;
+    max-width: 38em;
+  }
+
+  /* The font as shipped has no small-caps feature, so labels are set in spaced capitals. */
+  .smallcaps {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  .tr {
+    font-style: italic;
+  }
+
+  .ar {
+    font-family: "Amiri", var(--font-serif);
+    font-size: 1.12em;
+    line-height: 1;
+    font-style: normal;
+  }
+
+  .link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+
+  .link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  /* ---------- buttons and fields ---------- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 0.62em 1.25em 0.7em;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: inherit;
+    text-transform: uppercase;
+    font-size: 0.78em;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    background: transparent;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+  }
+
+  .btn:hover {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--accent) 86%, var(--ink));
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .field {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 0.7em 0;
+    color: var(--ink);
+    font: inherit;
+    border-radius: 0;
+  }
+
+  .field::placeholder {
+    color: var(--ink-soft);
+    opacity: 1;
+  }
+
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+  }
+
+  /* ---------- navigation ---------- */
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--nav-h);
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .wordmark {
+    font-size: 1.32em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .wordmark .dot,
+  .headword .dot {
+    color: var(--rubric);
+  }
+
+  .nav-link {
+    font-size: 0.95em;
+    color: var(--ink-soft);
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+  }
+
+  /* ---------- the dictionary entry ---------- */
+
+  .runhead {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.9em;
+    font-size: 0.84em;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.55rem;
+  }
+
+  .runhead strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .headword {
+    font-size: clamp(3.4rem, 1.5rem + 8.4vw, 8rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    font-feature-settings: "kern", "liga", "lnum";
+  }
+
+  .entry-meta {
+    color: var(--ink-soft);
+  }
+
+  .senses {
+    counter-reset: sense;
+    display: grid;
+    row-gap: 0.7em;
+  }
+
+  .senses > li {
+    counter-increment: sense;
+    display: grid;
+    grid-template-columns: 1.7em minmax(0, 1fr);
+  }
+
+  .senses > li::before {
+    content: counter(sense);
+    color: var(--rubric);
+    font-weight: 700;
+    font-feature-settings: "lnum";
+  }
+
+  .label {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-right: 0.35em;
+  }
+
+  /* ---------- the vault (Abb. 1) ---------- */
+
+  .muq-track {
+    position: relative;
+  }
+
+  .muq-sticky {
+    position: sticky;
+    top: calc(var(--nav-h) + 1rem);
+  }
+
+  /* The extra height is the scroll distance over which the plan rises into the vault. */
+  .js .muq-track {
+    min-height: calc(min(100vw - 2.5rem, 34rem) + 9rem + 55vh);
+  }
+
+  @media (min-width: 64rem) {
+    .js .muq-track {
+      min-height: calc(34rem + 46vh);
+    }
+
+    .hero-row {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      column-gap: clamp(2.5rem, 5vw, 5rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .muq-track {
+      min-height: 0;
+    }
+  }
+
+  .muq-canvas {
+    position: relative;
+    width: 100%;
+    max-width: 34rem;
+    aspect-ratio: 1 / 1;
+    margin-inline: auto;
+    color: var(--accent);
+  }
+
+  .muq-canvas > canvas,
+  .muq-canvas > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .figcap {
+    font-size: 0.82em;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 34rem;
+    margin-inline: auto;
+    margin-top: 0.75rem;
+  }
+
+  /* ---------- lists of numbered items ---------- */
+
+  .items {
+    border-top: 1px solid var(--line);
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 2.4em minmax(0, 1fr);
+    padding-block: 0.95em;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .item-n {
+    color: var(--rubric);
+    font-weight: 600;
+    font-feature-settings: "lnum";
+  }
+
+  .item-name {
+    font-weight: 600;
+  }
+
+  .group-title {
+    text-transform: uppercase;
+    font-size: 0.78em;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ---------- objections ---------- */
+
+  .objection {
+    padding-block: 1.3em;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .objection:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .said {
+    font-size: 1.14em;
+    line-height: 1.35;
+    font-style: italic;
+  }
+
+  .voice {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    letter-spacing: 0.11em;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--rubric);
+    margin-right: 0.5em;
+  }
+
+  /* ---------- legal pages ---------- */
+
+  .legal h2 {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--rubric);
+    margin-bottom: 0.35em;
+  }
+
+  .legal section + section {
+    margin-top: 1.9em;
+  }
+
+  .legal p + p {
+    margin-top: 0.8em;
+  }
+}
